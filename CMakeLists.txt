@@ -1,8 +1,8 @@
-CMAKE_MINIMUM_REQUIRED(VERSION 3.2)
+cmake_minimum_required(VERSION 3.16)
 PROJECT(wave)
 
 # Package version, used when other projects FIND_PACKAGE(wave <version>)
-SET(WAVE_PACKAGE_VERSION 0.1.0)
+SET(WAVE_PACKAGE_VERSION 0.1.1)
 
 # Compiler settings for all targets
 SET(CMAKE_CXX_STANDARD 17)

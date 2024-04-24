@@ -3,6 +3,7 @@ PROJECT(wave_controls)
 WAVE_ADD_MODULE(${PROJECT_NAME}
     DEPENDS
     Eigen3::Eigen
+    wave::utils
     SOURCES
     src/pid.cpp)
 
