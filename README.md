@@ -35,7 +35,7 @@ Some earlier versions may work, but are not tested.
 - Boost 1.54
 - Ceres 1.13
 - Eigen 3.3.2
-- OpenCV 4.2.0
+- OpenCV 3.2.0
 - PCL 1.8
 - yaml-cpp 0.5.1
 - gtsam

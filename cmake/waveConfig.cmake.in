@@ -89,13 +89,13 @@ SET_AND_CHECK(WAVE_EXTRA_CMAKE_DIR
 # Find dependencies which *may* be used by wave targets
 # These are not REQUIRED here, but are checked later for each libwave component
 LIST(APPEND CMAKE_MODULE_PATH "${WAVE_EXTRA_CMAKE_DIR}")
-FIND_PACKAGE(Eigen3 3.3.7 QUIET)
-FIND_PACKAGE(Boost 1.71.0 QUIET)
-FIND_PACKAGE(PCL 1.10 QUIET)
+FIND_PACKAGE(Eigen3 3.2.92 QUIET)
+FIND_PACKAGE(Boost 1.54.0 QUIET)
+FIND_PACKAGE(PCL 1.8 QUIET)
 FIND_PACKAGE(kindr QUIET)
-FIND_PACKAGE(OpenCV 4.2.0 QUIET)
+FIND_PACKAGE(OpenCV 3.2.0 QUIET)
 FIND_PACKAGE(yaml-cpp QUIET)
-FIND_PACKAGE(Ceres 1.14 QUIET)
+FIND_PACKAGE(Ceres 1.12 QUIET)
 
 # Where dependencies do not provide imported targets, define them
 INCLUDE(${WAVE_EXTRA_CMAKE_DIR}/ImportEigen3.cmake)

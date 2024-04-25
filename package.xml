@@ -10,15 +10,13 @@
   <license>MIT</license>
 
   <!-- This file lets catkin build this non-catkin package-->
-  <buildtool_depend condition="$ROS_VERSION == 1">catkin</buildtool_depend>
-  <buildtool_depend condition="$ROS_VERSION == 2">ament_cmake_core</buildtool_depend>
-  <depend>libboost-dev</depend>
-  <depend>yaml-cpp</depend>
+  <buildtool_depend>catkin</buildtool_depend>
+  <depend>boost</depend>
   <depend>eigen</depend>
   <depend>geographiclib</depend>
+  <depend>yaml-cpp</depend>
   <test_depend>rosunit</test_depend>
   <export>
-    <build_type condition="$ROS_VERSION == 1">catkin</build_type>
-    <build_type condition="$ROS_VERSION == 2">ament_cmake</build_type>
+    <build_type>cmake</build_type>
   </export>
 </package>
