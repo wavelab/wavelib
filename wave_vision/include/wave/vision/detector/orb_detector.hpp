@@ -33,7 +33,7 @@ struct ORBDetectorParams {
                       const float scale_factor,
                       const int num_levels,
                       const int edge_threshold,
-                      const int score_type,
+                      const cv::ORB::ScoreType score_type,
                       const int fast_threshold)
         : num_features(num_features),
           scale_factor(scale_factor),
@@ -82,11 +82,11 @@ struct ORBDetectorParams {
      *  alternative option. cv::ORB::FAST_SCORE is slightly faster than
      *  cv::ORB::HARRIS_SCORE, but the results are not as stable.
      *
-     *  Options: cv::ORB::HARRIS_SCORE, cv::ORB::FAST_SCORE
+     *  Options: cv::ORB::ScoreType::HARRIS_SCORE, cv::ORB::ScoreType::FAST_SCORE
      *
-     *  Default: cv::ORB::HARRIS_SCORE
+     *  Default: cv::ORB::ScoreType::HARRIS_SCORE
      */
-    int score_type = cv::ORB::HARRIS_SCORE;
+    cv::ORB::ScoreType score_type = cv::ORB::ScoreType::HARRIS_SCORE;
 
     /** Threshold on difference between intensity of the central pixel, and
      *  pixels in a circle (Bresenham radius 3) around this pixel.

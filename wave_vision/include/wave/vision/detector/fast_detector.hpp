@@ -22,7 +22,7 @@ struct FASTDetectorParams {
 
     FASTDetectorParams(const int threshold,
                        const bool nonmax_suppression,
-                       const int type,
+                       const cv::FastFeatureDetector::DetectorType type,
                        const int num_features)
         : threshold(threshold),
           nonmax_suppression(nonmax_suppression),
@@ -54,11 +54,11 @@ struct FASTDetectorParams {
      *  deem the point as a corner.
      *
      *  Options:
-     *  cv::FastFeatureDetector::TYPE_5_8
-     *  cv::FastFeatureDetector::TYPE_7_12
-     *  cv::FastFeatureDetector::TYPE_9_16 (recommended)
+     *  ccv::FastFeatureDetector::DetectorType::TYPE_5_8
+     *  ccv::FastFeatureDetector::DetectorType::TYPE_7_12
+     *  ccv::FastFeatureDetector::DetectorType::TYPE_9_16 (recommended)
      */
-    int type = cv::FastFeatureDetector::TYPE_9_16;
+    cv::FastFeatureDetector::DetectorType type = cv::FastFeatureDetector::DetectorType::TYPE_9_16;
 
     /** The number of features to keep from detection.
      *

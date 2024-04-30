@@ -6,6 +6,7 @@
 #include <gtsam/nonlinear/LevenbergMarquardtOptimizer.h>
 #include <gtsam/inference/Symbol.h>
 #include <gtsam/linear/Sampler.h>
+#include <gtsam/geometry/SimpleCamera.h>
 
 #include "wave/wave_test.hpp"
 #include "wave/vision/dataset/VoDataset.hpp"

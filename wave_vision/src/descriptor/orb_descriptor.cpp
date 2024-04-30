@@ -37,7 +37,7 @@ ORBDescriptor::ORBDescriptor(const ORBDescriptorParams &config) {
     int num_levels = 8;
     int edge_threshold = 31;
     int first_level = 0;  // As per OpenCV docs, first_level must be zero.
-    int score_type = cv::ORB::HARRIS_SCORE;
+    cv::ORB::ScoreType score_type = cv::ORB::ScoreType::HARRIS_SCORE;
     int fast_threshold = 20;
 
     // Create cv::ORB object with the desired parameters

@@ -102,7 +102,6 @@ INCLUDE(${WAVE_EXTRA_CMAKE_DIR}/ImportEigen3.cmake)
 INCLUDE(${WAVE_EXTRA_CMAKE_DIR}/ImportBoost.cmake)
 INCLUDE(${WAVE_EXTRA_CMAKE_DIR}/ImportPCL.cmake)
 INCLUDE(${WAVE_EXTRA_CMAKE_DIR}/ImportKindr.cmake)
-INCLUDE(${WAVE_EXTRA_CMAKE_DIR}/ImportYaml-cpp.cmake)
 INCLUDE(${WAVE_EXTRA_CMAKE_DIR}/ImportCeres.cmake)
 
 # This file contains definitions of IMPORTED targets

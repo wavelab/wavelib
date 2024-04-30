@@ -15,7 +15,7 @@ TEST(ORBDetectorTests, GoodConfig) {
     float scale_factor = 1.2f;
     int num_levels = 8;
     int edge_threshold = 31;
-    int score_type = cv::ORB::HARRIS_SCORE;
+    cv::ORB::ScoreType score_type = cv::ORB::HARRIS_SCORE;
     int fast_threshold = 20;
 
     EXPECT_NO_THROW(ORBDetectorParams config2(num_features,
@@ -79,17 +79,6 @@ TEST(ORBDetectorTests, BadEdgeThreshold) {
     ASSERT_THROW(ORBDetector bad_edgethreshold(config), std::invalid_argument);
 }
 
-TEST(ORBDetectorTests, BadScoreType) {
-    ORBDetectorParams config;
-
-    config.score_type = -1;
-
-    ASSERT_THROW(ORBDetector bad_scoretype1(config), std::invalid_argument);
-
-    config.score_type = 2;
-    ASSERT_THROW(ORBDetector bad_scoretype2(config), std::invalid_argument);
-}
-
 TEST(ORBDetectorTests, BadFastThreshold) {
     ORBDetectorParams config;
     config.fast_threshold = 0;
@@ -146,10 +135,6 @@ TEST(ORBDetectorTests, BadNewConfiguration) {
     ORBDetectorParams config4;
     config4.edge_threshold = -1;
     ASSERT_THROW(detector.configure(config4), std::invalid_argument);
-
-    ORBDetectorParams config5;
-    config5.score_type = -1;
-    ASSERT_THROW(detector.configure(config5), std::invalid_argument);
 
     ORBDetectorParams config6;
     config6.fast_threshold = -1;

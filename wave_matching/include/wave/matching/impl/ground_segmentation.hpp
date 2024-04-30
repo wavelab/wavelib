@@ -227,7 +227,7 @@ void GroundSegmentation<PointT>::sectorINSAC(int sector_index) {
 
         if (Vf_s.rows() == 0) {
             keep_going = false;
-            LOG_INFO("WARNING BREAKING LOOP: VF_s does not exist");
+            LOG_INFO("Ground segmentation: BREAKING LOOP: VF_s does not exist");
             continue;
         }
 

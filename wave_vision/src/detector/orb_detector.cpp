@@ -32,7 +32,11 @@ ORBDetectorParams::ORBDetectorParams(const std::string &config_path) {
     this->scale_factor = scale_factor;
     this->num_levels = num_levels;
     this->edge_threshold = edge_threshold;
-    this->score_type = score_type;
+    if (score_type == 0) {
+        this->score_type = cv::ORB::ScoreType::HARRIS_SCORE;
+    } else if (score_type == 1) {
+        this->score_type = cv::ORB::ScoreType::FAST_SCORE;
+    }
     this->fast_threshold = fast_threshold;
 }
 

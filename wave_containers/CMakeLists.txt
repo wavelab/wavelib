@@ -3,7 +3,8 @@ PROJECT(wave_containers)
 WAVE_ADD_MODULE(${PROJECT_NAME}
     DEPENDS
     Eigen3::Eigen
-    Boost::boost)
+    Boost::boost
+    wave::utils)
 
 # Unit tests
 IF(BUILD_TESTING)

@@ -13,7 +13,7 @@ TEST(FASTTests, GoodConfig) {
     // Custom params struct (with good values)
     int threshold = 10;
     bool nms = true;
-    int type = cv::FastFeatureDetector::TYPE_9_16;
+    cv::FastFeatureDetector::DetectorType type = cv::FastFeatureDetector::DetectorType::TYPE_9_16;
     int num_features = 10;
 
     EXPECT_NO_THROW(
@@ -44,16 +44,6 @@ TEST(FASTTests, BadThresholdConfiguration) {
     config.threshold = -1;
 
     ASSERT_THROW(FASTDetector bad_threshold(config), std::invalid_argument);
-}
-
-TEST(FASTTests, BadTypeConfiguration) {
-    FASTDetectorParams config;
-    config.type = -1;
-
-    ASSERT_THROW(FASTDetector bad_type1(config), std::invalid_argument);
-
-    config.type = 4;
-    ASSERT_THROW(FASTDetector bad_type2(config), std::invalid_argument);
 }
 
 TEST(FASTTests, BadNumFeatures) {
@@ -96,10 +86,6 @@ TEST(FASTTests, BadNewConfiguration) {
       0, true, cv::FastFeatureDetector::TYPE_7_12, 0};
 
     ASSERT_THROW(detector.configure(new_config), std::invalid_argument);
-
-    FASTDetectorParams new_config_2;
-    new_config_2.type = -1;
-    ASSERT_THROW(detector.configure(new_config_2), std::invalid_argument);
 
     FASTDetectorParams new_config_3;
     new_config_3.num_features = -5;

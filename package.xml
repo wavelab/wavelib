@@ -1,14 +1,21 @@
-<package format="2">
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
   <name>libwave</name>
-  <version>0.1.0</version>
+  <version>0.1.1</version>
   <description>libwave</description>
 
-  <maintainer email="chutsu@gmail.com">Chris Choi</maintainer>
-  <maintainer email="lkoppel@uwaterloo.ca">Leo Koppel</maintainer>
+  <author email="chutsu@gmail.com">Chris Choi</author>
+  <author email="lkoppel@uwaterloo.ca">Leo Koppel</author>
+  <maintainer email="michal.antkiewicz@uwaterloo.ca">Michal Antkiewicz</maintainer>
   <license>MIT</license>
 
   <!-- This file lets catkin build this non-catkin package-->
   <buildtool_depend>catkin</buildtool_depend>
+  <depend>boost</depend>
+  <depend>eigen</depend>
+  <depend>geographiclib</depend>
+  <depend>yaml-cpp</depend>
+  <test_depend>rosunit</test_depend>
   <export>
     <build_type>cmake</build_type>
   </export>

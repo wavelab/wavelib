@@ -41,14 +41,15 @@ Some earlier versions may work, but are not tested.
 - gtsam
 - GeographicLib 1.49
 
-Building libwave requires CMake 3.2 and a C++11 compiler (tested on GCC 5.4).
+Building libwave requires CMake 3.16 and a C++17 compiler (tested on GCC 5.4).
 
 ### Installing dependencies
 The basic set of dependencies can be installed with the Ubuntu package manager
 using the command
 
-    sudo apt-get install libboost-dev libyaml-cpp-dev libeigen3-dev \
-    build-essential cmake
+```
+# apt-get install libboost-dev libyaml-cpp-dev libeigen3-dev build-essential cmake
+```
 
 For convenience, scripts to install other dependencies on Ubuntu 16.04 are
 provided in `scripts/install`. **Note**: the scripts are not tested on a wide
@@ -69,16 +70,16 @@ described above. Then build using CMake:
     cd build
     cmake ..
     make -j8
-    
+
 By default, all libraries whose dependencies are found will be built. Individual
 libraries can be disabled using CMake options. For example,
 
     cmake .. -DBUILD_wave_vision=OFF
-    
+
 will disable building `wave_vision`.
 
 Install libwave by running `make install`. Alternatively, you can enable the
-`EXPORT_BUILD` option in CMake, which will make the libwave build directory 
+`EXPORT_BUILD` option in CMake, which will make the libwave build directory
 searchable by CMake without installation.
 
 
@@ -94,7 +95,7 @@ installed elsewhere). A workaround is to remove OpenCV 2 via
 One libwave has been either installed or exported by CMake, it can be used in
 your project's `CMakeLists.txt` file as follows:
 
-    cmake_minimum_required(VERSION 3.0)
+    cmake_minimum_required(VERSION 3.16)
     project(example)
 
     find_package(wave REQUIRED geometry matching)

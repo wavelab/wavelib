@@ -26,7 +26,13 @@ FASTDetectorParams::FASTDetectorParams(const std::string &config_path) {
 
     this->threshold = threshold;
     this->nonmax_suppression = nonmax_suppression;
-    this->type = type;
+    if (type == 0) {
+        this->type = cv::FastFeatureDetector::DetectorType::TYPE_5_8;
+    } else if (type == 1) {
+        this->type = cv::FastFeatureDetector::DetectorType::TYPE_7_12;
+    } else if (type == 2) {
+        this->type = cv::FastFeatureDetector::DetectorType::TYPE_9_16;
+    }
     this->num_features = num_features;
 }
 
