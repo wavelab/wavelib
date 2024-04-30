@@ -21,7 +21,7 @@ TEST(viewer, pointcloud_test) {
     PointCloudDisplay display("pointcloud_test");
     display.startSpin();
     PCLPointCloudPtr cloud =
-      boost::make_shared<pcl::PointCloud<pcl::PointXYZ>>();
+      std::make_shared<pcl::PointCloud<pcl::PointXYZ>>();
     pcl::io::loadPCDFile(TEST_SCAN, *cloud);
     display.addPointcloud(cloud, 0, true);
     std::this_thread::sleep_for(std::chrono::seconds(5));
@@ -32,7 +32,7 @@ TEST(viewer, multiple_clouds_test) {
     PointCloudDisplay display("multiple_clouds_test");
     display.startSpin();
     PCLPointCloudPtr cloud =
-      boost::make_shared<pcl::PointCloud<pcl::PointXYZ>>();
+      std::make_shared<pcl::PointCloud<pcl::PointXYZ>>();
     pcl::io::loadPCDFile(TEST_SCAN, *cloud);
     display.addPointcloud(cloud, 0, true);
     Eigen::Affine3f transform(Eigen::Translation3f(Eigen::Vector3f(20, 0, 0)));
@@ -63,7 +63,7 @@ TEST(viewer, pointcloud_intensity) {
     PointCloudDisplay display("intensity_test");
     display.startSpin();
     pcl::PointCloud<pcl::PointXYZI>::Ptr cloud =
-      boost::make_shared<pcl::PointCloud<pcl::PointXYZI>>();
+      std::make_shared<pcl::PointCloud<pcl::PointXYZI>>();
     pcl::io::loadPCDFile(TEST_SCAN, *cloud);
     display.addPointcloud(cloud, 1, true);
     std::this_thread::sleep_for(std::chrono::seconds(5));

@@ -22,7 +22,7 @@ class GtsamExample : public ::testing::Test {
     VoDatasetGenerator generator;
     VoDataset dataset;
     gtsam::Cal3_S2::shared_ptr kParams =
-      boost::make_shared<gtsam::Cal3_S2>(200, 200, 0, 320, 240);
+      std::make_shared<gtsam::Cal3_S2>(200, 200, 0, 320, 240);
 
     GtsamExample() {
         generator.camera.image_width = 640;

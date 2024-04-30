@@ -56,8 +56,8 @@ TEST(decaying_bias, jacobians) {
 
     auto fun = boost::bind(&DecayingBias::evaluateError,
                            boost::ref(factor),
-                           _1,
-                           _2,
+                           boost::placeholders::_1,
+                           boost::placeholders::_2,
                            boost::none,
                            boost::none);
 

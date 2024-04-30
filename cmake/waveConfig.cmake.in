@@ -89,20 +89,16 @@ SET_AND_CHECK(WAVE_EXTRA_CMAKE_DIR
 # Find dependencies which *may* be used by wave targets
 # These are not REQUIRED here, but are checked later for each libwave component
 LIST(APPEND CMAKE_MODULE_PATH "${WAVE_EXTRA_CMAKE_DIR}")
-FIND_PACKAGE(Eigen3 3.2.92 QUIET)
-FIND_PACKAGE(Boost 1.54.0 QUIET)
-FIND_PACKAGE(PCL 1.8 QUIET)
-FIND_PACKAGE(kindr QUIET)
-FIND_PACKAGE(OpenCV 3.2.0 QUIET)
-FIND_PACKAGE(yaml-cpp QUIET)
-FIND_PACKAGE(Ceres 1.12 QUIET)
-
-# Where dependencies do not provide imported targets, define them
-INCLUDE(${WAVE_EXTRA_CMAKE_DIR}/ImportEigen3.cmake)
-INCLUDE(${WAVE_EXTRA_CMAKE_DIR}/ImportBoost.cmake)
-INCLUDE(${WAVE_EXTRA_CMAKE_DIR}/ImportPCL.cmake)
-INCLUDE(${WAVE_EXTRA_CMAKE_DIR}/ImportKindr.cmake)
-INCLUDE(${WAVE_EXTRA_CMAKE_DIR}/ImportCeres.cmake)
+FIND_PACKAGE(Eigen3 3.4 REQUIRED)
+FIND_PACKAGE(Boost 1.82 REQUIRED COMPONENTS system filesystem)
+FIND_PACKAGE(PCL 1.13 CONFIG REQUIRED COMPONENTS
+    common filters registration kdtree search io visualization)
+FIND_PACKAGE(kindr)
+FIND_PACKAGE(OpenCV 4.9)
+FIND_PACKAGE(yaml-cpp 0.8 REQUIRED)
+FIND_PACKAGE(Ceres 1.14)
+FIND_PACKAGE(GTSAM 4.2)
+FIND_PACKAGE(GeographicLib 2.3 REQUIRED CONFIG)
 
 # This file contains definitions of IMPORTED targets
 INCLUDE("${CMAKE_CURRENT_LIST_DIR}/waveTargets.cmake")

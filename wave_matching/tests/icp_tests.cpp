@@ -21,8 +21,8 @@ class ICPTest : public testing::Test {
     }
 
     virtual void SetUp() {
-        this->ref = boost::make_shared<pcl::PointCloud<pcl::PointXYZ>>();
-        this->target = boost::make_shared<pcl::PointCloud<pcl::PointXYZ>>();
+        this->ref = std::make_shared<pcl::PointCloud<pcl::PointXYZ>>();
+        this->target = std::make_shared<pcl::PointCloud<pcl::PointXYZ>>();
         pcl::io::loadPCDFile(TEST_SCAN, *(this->ref));
     }
 
@@ -38,7 +38,7 @@ class ICPTest : public testing::Test {
 };
 
 TEST(ICPTests, initialization) {
-    ICPMatcher matcher(ICPMatcherParams());
+    ICPMatcher matcher{ICPMatcherParams()};
 }
 
 // Zero displacement without downsampling
@@ -150,8 +150,8 @@ TEST_F(ICPTest, multiscale) {
 // Small information using voxel downsampling
 TEST(ICPTests, lumvslum) {
     pcl::PointCloud<pcl::PointXYZ>::Ptr ref, target;
-    ref = boost::make_shared<pcl::PointCloud<pcl::PointXYZ>>();
-    target = boost::make_shared<pcl::PointCloud<pcl::PointXYZ>>();
+    ref = std::make_shared<pcl::PointCloud<pcl::PointXYZ>>();
+    target = std::make_shared<pcl::PointCloud<pcl::PointXYZ>>();
     pcl::io::loadPCDFile(TEST_SCAN, *(ref));
     Affine3 perturb;
     Affine3 result;

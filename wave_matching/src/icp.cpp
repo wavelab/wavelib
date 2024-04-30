@@ -30,13 +30,13 @@ ICPMatcherParams::ICPMatcherParams(const std::string &config_path) {
 }
 
 ICPMatcher::ICPMatcher(ICPMatcherParams params1) : params(params1) {
-    this->ref = boost::make_shared<pcl::PointCloud<pcl::PointXYZ>>();
-    this->target = boost::make_shared<pcl::PointCloud<pcl::PointXYZ>>();
-    this->final = boost::make_shared<pcl::PointCloud<pcl::PointXYZ>>();
+    this->ref = std::make_shared<pcl::PointCloud<pcl::PointXYZ>>();
+    this->target = std::make_shared<pcl::PointCloud<pcl::PointXYZ>>();
+    this->final = std::make_shared<pcl::PointCloud<pcl::PointXYZ>>();
     this->downsampled_ref =
-      boost::make_shared<pcl::PointCloud<pcl::PointXYZ>>();
+      std::make_shared<pcl::PointCloud<pcl::PointXYZ>>();
     this->downsampled_target =
-      boost::make_shared<pcl::PointCloud<pcl::PointXYZ>>();
+      std::make_shared<pcl::PointCloud<pcl::PointXYZ>>();
 
     if (this->params.res > 0) {
         this->filter.setLeafSize(

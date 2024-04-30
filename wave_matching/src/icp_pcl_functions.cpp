@@ -167,7 +167,7 @@ void ICPMatcher::estimateLUMold() {
     }
 
     // When reaching the limitations of computation due to linearization
-    if (ss < 0.0000000000001 || !pcl_isfinite(ss)) {
+    if (ss < 0.0000000000001 || !std::isfinite(ss)) {
         LOG_ERROR("Covariance matrix calculation was unsuccessful");
         this->information = wave::Mat6::Identity();
     }
@@ -278,7 +278,7 @@ void ICPMatcher::estimateLUM() {
         }
 
         // When reaching the limitations of computation due to linearization
-        if (ss < 0.0000000000001 || !pcl_isfinite(ss)) {
+        if (ss < 0.0000000000001 || !std::isfinite(ss)) {
             LOG_ERROR("Covariance matrix calculation was unsuccessful");
             this->information = Mat6::Identity();
             return;

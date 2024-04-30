@@ -19,7 +19,7 @@
 #include <pcl/point_types.h>
 #include <pcl/filters/filter.h>
 #include <pcl/filters/voxel_grid.h>
-#include <pcl/registration/transforms.h>
+#include <pcl/common/transforms.h>
 #include <wave/matching/ground_segmentation_params.hpp>
 #include <wave/utils/math.hpp>
 

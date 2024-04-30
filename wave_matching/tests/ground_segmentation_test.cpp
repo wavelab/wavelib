@@ -15,7 +15,7 @@ TEST(ground_segmentation, how_to_use) {
     // @todo factor out pre-filtering steps
 
     PCLPointCloudPtr input =
-      boost::make_shared<pcl::PointCloud<pcl::PointXYZ>>();
+      std::make_shared<pcl::PointCloud<pcl::PointXYZ>>();
     auto out_ground = input->makeShared();
     auto out_obs = input->makeShared();
     auto out_drv = input->makeShared();

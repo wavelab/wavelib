@@ -36,30 +36,16 @@ OPTION(BUILD_BENCHMARKS
 
 
 # Find all dependencies here, and ensure they have IMPORTED targets
-# The install scripts install some dependencies in /opt/wavelab
-OPTION(APPEND_OPT_WAVELAB "Append /opt/wavelab to CMAKE_PREFIX_PATH" ON)
-IF(APPEND_OPT_WAVELAB)
-    MESSAGE(STATUS "Adding /opt/wavelab to CMAKE_PREFIX_PATH")
-    LIST(APPEND CMAKE_PREFIX_PATH "/opt/wavelab")
-ENDIF()
-FIND_PACKAGE(Eigen3 3.2.92 REQUIRED)
-FIND_PACKAGE(Boost 1.54.0 COMPONENTS system filesystem)
-FIND_PACKAGE(PCL 1.8 COMPONENTS
+FIND_PACKAGE(Eigen3 3.4 REQUIRED)
+FIND_PACKAGE(Boost 1.82 REQUIRED COMPONENTS system filesystem)
+FIND_PACKAGE(PCL 1.13 CONFIG REQUIRED COMPONENTS
     common filters registration kdtree search io visualization)
 FIND_PACKAGE(kindr)
-FIND_PACKAGE(OpenCV 3.2.0)
-FIND_PACKAGE(yaml-cpp REQUIRED)
-FIND_PACKAGE(Ceres 1.12)
-FIND_PACKAGE(GTSAM)
-#set(CMAKE_MODULE_PATH "${CMAKE_MODULE_PATH};/usr/share/cmake/geographiclib")
-FIND_PACKAGE(GeographicLib 1.49)
-
-# Where dependencies do not provide IMPORTED targets, define them
-INCLUDE(cmake/ImportEigen3.cmake)
-INCLUDE(cmake/ImportBoost.cmake)
-INCLUDE(cmake/ImportPCL.cmake)
-INCLUDE(cmake/ImportKindr.cmake)
-INCLUDE(cmake/ImportCeres.cmake)
+FIND_PACKAGE(OpenCV 4.9)
+FIND_PACKAGE(yaml-cpp 0.8 REQUIRED)
+FIND_PACKAGE(Ceres 1.14)
+FIND_PACKAGE(GTSAM 4.2)
+FIND_PACKAGE(GeographicLib 2.3 REQUIRED CONFIG)
 
 # Optionally build tests. `gtest` is included with this project
 IF(BUILD_TESTING)
@@ -123,7 +109,7 @@ SET(WAVE_BINARY_DIR ${CMAKE_CURRENT_BINARY_DIR})
 ADD_SUBDIRECTORY(docs)
 
 # This is where .cmake files will be installed (default under share/)
-SET(INSTALL_CMAKE_DIR "${CMAKE_INSTALL_DATADIR}/wave/cmake" CACHE PATH
+SET(INSTALL_CMAKE_DIR "${CMAKE_INSTALL_LIBDIR}/wave/cmake" CACHE PATH
     "Installation directory for CMake files")
 
 # Add an export file listing all targets

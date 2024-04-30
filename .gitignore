@@ -25,3 +25,6 @@ octave-workspace
 # clion
 .idea/
 cmake-build-*/
+
+# VS Code
+.vscode/

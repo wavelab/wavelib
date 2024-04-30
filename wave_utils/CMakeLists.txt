@@ -3,7 +3,7 @@ PROJECT(wave_utils)
 WAVE_ADD_MODULE(${PROJECT_NAME}
     DEPENDS
     Eigen3::Eigen
-    yaml-cpp
+    yaml-cpp::yaml-cpp
     SOURCES
     src/config.cpp
     src/data.cpp

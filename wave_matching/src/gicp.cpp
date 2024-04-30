@@ -18,9 +18,9 @@ GICPMatcherParams::GICPMatcherParams(const std::string &config_path) {
 }
 
 GICPMatcher::GICPMatcher(GICPMatcherParams params1) : params(params1) {
-    this->ref = boost::make_shared<pcl::PointCloud<pcl::PointXYZ> >();
-    this->target = boost::make_shared<pcl::PointCloud<pcl::PointXYZ> >();
-    this->final = boost::make_shared<pcl::PointCloud<pcl::PointXYZ> >();
+    this->ref = std::make_shared<pcl::PointCloud<pcl::PointXYZ> >();
+    this->target = std::make_shared<pcl::PointCloud<pcl::PointXYZ> >();
+    this->final = std::make_shared<pcl::PointCloud<pcl::PointXYZ> >();
 
     if (params.res > 0) {
         this->resolution = params.res;

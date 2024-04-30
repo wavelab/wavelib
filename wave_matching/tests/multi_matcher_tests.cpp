@@ -11,11 +11,13 @@ const auto TEST_SCAN = "tests/data/testscan.pcd";
 class MultiTest : public testing::Test {
  protected:
     MultiTest() {}
+    MultiTest(MultiTest &) = delete;
+    MultiTest(MultiTest &&) = delete;
 
     virtual ~MultiTest() {}
 
     virtual void SetUp() {
-        this->cld = boost::make_shared<pcl::PointCloud<pcl::PointXYZ>>();
+        this->cld = std::make_shared<pcl::PointCloud<pcl::PointXYZ>>();
         pcl::io::loadPCDFile(TEST_SCAN, *(this->cld));
     }
 
@@ -32,7 +34,7 @@ TEST_F(MultiTest, simultaneousmatching) {
     // Setup
     pcl::PointCloud<pcl::PointXYZ>::Ptr dupes[9];
     for (int i = 0; i < 9; i++) {
-        dupes[i] = boost::make_shared<pcl::PointCloud<pcl::PointXYZ>>();
+        dupes[i] = std::make_shared<pcl::PointCloud<pcl::PointXYZ>>();
         *(dupes[i]) = *(this->cld);
     }
     for (int i = 0; i < 8; i++) {

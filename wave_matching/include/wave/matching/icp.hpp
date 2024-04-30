@@ -74,6 +74,9 @@ class ICPMatcher : public Matcher<PCLPointCloudPtr> {
     explicit ICPMatcher(ICPMatcherParams params1);
     ~ICPMatcher();
 
+    explicit ICPMatcher(ICPMatcher &) = delete;
+    explicit ICPMatcher(ICPMatcher &&) = delete;
+
     /** sets the reference pointcloud for the matcher
      * @param ref - Pointcloud
      */

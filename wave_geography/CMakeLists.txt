@@ -3,7 +3,7 @@ PROJECT(wave_geography)
 WAVE_ADD_MODULE(${PROJECT_NAME}
     DEPENDS
     Eigen3::Eigen
-    GeographicLib
+    GeographicLib::GeographicLib
     SOURCES
     src/world_frame_conversions.cpp)
 

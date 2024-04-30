@@ -25,7 +25,7 @@ class GtsamExample : public ::testing::Test {
  protected:
     VoDataset dataset = VoDataset::loadFromDirectory(DATASET_DIR);
     gtsam::Cal3_S2::shared_ptr kParams =
-      boost::make_shared<gtsam::Cal3_S2>(dataset.camera_K(0, 0),
+      std::make_shared<gtsam::Cal3_S2>(dataset.camera_K(0, 0),
                                          dataset.camera_K(1, 1),
                                          0.,
                                          dataset.camera_K(0, 2),

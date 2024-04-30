@@ -20,8 +20,8 @@ class NDTTest : public testing::Test {
     }
 
     virtual void SetUp() {
-        this->ref = boost::make_shared<pcl::PointCloud<pcl::PointXYZ>>();
-        this->target = boost::make_shared<pcl::PointCloud<pcl::PointXYZ>>();
+        this->ref = std::make_shared<pcl::PointCloud<pcl::PointXYZ>>();
+        this->target = std::make_shared<pcl::PointCloud<pcl::PointXYZ>>();
         pcl::io::loadPCDFile(TEST_SCAN, *(this->ref));
     }
 
@@ -38,7 +38,7 @@ class NDTTest : public testing::Test {
 };
 
 TEST(NDTTests, initialization) {
-    NDTMatcher matcher(NDTMatcherParams());
+    NDTMatcher matcher{NDTMatcherParams()};
 }
 
 // Zero displacement using resolution from config

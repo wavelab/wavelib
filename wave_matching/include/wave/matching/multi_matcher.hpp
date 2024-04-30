@@ -37,6 +37,8 @@ class MultiMatcher {
         this->remaining_matches = 0;
         this->initPool(params);
     }
+   MultiMatcher(MultiMatcher &) = delete;
+   MultiMatcher(MultiMatcher &&) = delete;
 
     ~MultiMatcher();
 

@@ -17,15 +17,15 @@ gtsam::Vector DecayingBias::evaluateError(
   boost::optional<gtsam::Matrix &> J_B_1,
   boost::optional<gtsam::Matrix &> J_B_2) const {
     if (J_B_1) {
-        J_B_1->resize(B_1.dimension, B_1.dimension);
+        J_B_1->resize(B_1.NumDimensions, B_1.NumDimensions);
         (*J_B_1) = -this->decay_factor * gtsam::Matrix3::Identity();
     }
     if (J_B_2) {
-        J_B_2->setIdentity(B_2.dimension, B_2.dimension);
+        J_B_2->setIdentity(B_2.NumDimensions, B_2.NumDimensions);
     }
 
     gtsam::Vector retval;
-    retval.resize(B_1.dimension);
+    retval.resize(B_1.NumDimensions);
     retval = B_2 - B_1 * (this->decay_factor);
     return retval;
 }

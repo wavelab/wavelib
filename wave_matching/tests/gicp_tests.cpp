@@ -20,8 +20,8 @@ class GICPTest : public testing::Test {
     }
 
     virtual void SetUp() {
-        this->ref = boost::make_shared<pcl::PointCloud<pcl::PointXYZ> >();
-        this->target = boost::make_shared<pcl::PointCloud<pcl::PointXYZ> >();
+        this->ref = std::make_shared<pcl::PointCloud<pcl::PointXYZ> >();
+        this->target = std::make_shared<pcl::PointCloud<pcl::PointXYZ> >();
         pcl::io::loadPCDFile(TEST_SCAN, *(this->ref));
     }
 
@@ -36,7 +36,7 @@ class GICPTest : public testing::Test {
 };
 
 TEST(gicp_tests, initialization) {
-    GICPMatcher matcher(GICPMatcherParams());
+    GICPMatcher matcher{GICPMatcherParams()};
 }
 
 // Zero displacement without downsampling

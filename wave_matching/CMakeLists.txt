@@ -5,7 +5,7 @@ WAVE_ADD_MODULE(${PROJECT_NAME}
     wave::utils
     Eigen3::Eigen
     Boost::boost
-    PCL::PCL
+    ${PCL_LIBRARIES}
     SOURCES
     src/gicp.cpp
     src/icp.cpp

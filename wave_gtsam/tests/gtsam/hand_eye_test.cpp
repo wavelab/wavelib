@@ -104,9 +104,9 @@ TEST(hand_eye, jacobians) {
 
     auto fun = boost::bind(&HandEyeFactor::evaluateError,
                            boost::ref(factor),
-                           _1,
-                           _2,
-                           _3,
+                           boost::placeholders::_1,
+                           boost::placeholders::_2,
+                           boost::placeholders::_3,
                            boost::none,
                            boost::none,
                            boost::none);
