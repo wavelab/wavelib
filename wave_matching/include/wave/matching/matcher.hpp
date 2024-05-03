@@ -37,7 +37,8 @@ class Matcher {
     Matcher() {
         resolution = -1;
     }
-
+    Matcher(Matcher &) = delete;
+    Matcher(Matcher &&) = default;
     virtual ~Matcher() {}
 
     const Eigen::Affine3d getResult() {

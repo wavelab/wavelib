@@ -29,7 +29,7 @@ namespace wave {
 
 struct ICPMatcherParams {
     ICPMatcherParams(const std::string &config_path);
-    ICPMatcherParams() {}
+    ICPMatcherParams() = default;
 
     /// Maximum distance to correspond points for icp
     double max_corr = 3;
@@ -73,9 +73,8 @@ class ICPMatcher : public Matcher<PCLPointCloudPtr> {
      */
     explicit ICPMatcher(ICPMatcherParams params1);
     ~ICPMatcher();
-
     explicit ICPMatcher(ICPMatcher &) = delete;
-    explicit ICPMatcher(ICPMatcher &&) = delete;
+    explicit ICPMatcher(ICPMatcher &&) = default;
 
     /** sets the reference pointcloud for the matcher
      * @param ref - Pointcloud

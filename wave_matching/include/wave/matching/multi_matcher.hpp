@@ -29,17 +29,19 @@ namespace wave {
 template <typename T, typename R>
 class MultiMatcher {
  public:
-    MultiMatcher(int n_threads = std::thread::hardware_concurrency(),
+    explicit MultiMatcher(int n_threads = std::thread::hardware_concurrency(),
                  int queue_s = 10,
                  R params = R())
         : n_thread(n_threads), queue_size(queue_s), config(params) {
         this->stop = false;
         this->remaining_matches = 0;
+      //   this->matchers.reserve(n_threads);
+      //   this->pool.reserve(n_threads);
         this->initPool(params);
     }
-   MultiMatcher(MultiMatcher &) = delete;
-   MultiMatcher(MultiMatcher &&) = delete;
-
+   explicit MultiMatcher(MultiMatcher &) = delete;
+   explicit MultiMatcher(MultiMatcher &&) = default;
+   
     ~MultiMatcher();
 
     /** inserts a pair of scans into the queue to be matched. The resulting
@@ -82,7 +84,9 @@ class MultiMatcher {
     std::queue<std::tuple<int, PCLPointCloudPtr, PCLPointCloudPtr>> input;
     std::queue<std::tuple<int, Eigen::Affine3d, Mat6>> output;
     std::vector<std::thread> pool;
-    std::vector<T, Eigen::aligned_allocator<T>> matchers;
+    //std::vector<T, Eigen::aligned_allocator<T>> matchers; // not needed with C++17 
+                                                            // https://eigen.tuxfamily.org/dox/group__TopicStlContainers.html
+    std::vector<T> matchers;
 
     // Synchronization
     std::mutex ip_mutex, op_mutex, cnt_mutex;

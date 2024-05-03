@@ -11,8 +11,8 @@ const auto TEST_SCAN = "tests/data/testscan.pcd";
 class MultiTest : public testing::Test {
  protected:
     MultiTest() {}
-    MultiTest(MultiTest &) = delete;
-    MultiTest(MultiTest &&) = delete;
+    MultiTest(MultiTest&) = delete;
+    MultiTest(MultiTest&&) = default;
 
     virtual ~MultiTest() {}
 
