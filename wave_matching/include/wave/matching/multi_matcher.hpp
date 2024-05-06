@@ -23,24 +23,27 @@ namespace wave {
 
 /**
  * Class is templated for different matcher types
+ * Runs eight matchers in parallel
  * @tparam T matcher type
  * @tparam R matcher params type
  */
 template <typename T, typename R>
 class MultiMatcher {
  public:
-    explicit MultiMatcher(int n_threads = std::thread::hardware_concurrency(),
-                 int queue_s = 10,
-                 R params = R())
-        : n_thread(n_threads), queue_size(queue_s), config(params) {
-        this->stop = false;
-        this->remaining_matches = 0;
-      //   this->matchers.reserve(n_threads);
-      //   this->pool.reserve(n_threads);
-        this->initPool(params);
+    explicit MultiMatcher(int queue_s = 10, R params = R())
+             : n_thread(8), queue_size(queue_s), config(params), 
+               matcher0(params), matcher1(params), matcher2(params), matcher3(params),
+               matcher4(params), matcher5(params), matcher6(params), matcher7(params) {
+        for (int i = 0; i < this->n_thread; i++) {
+            this->pool.emplace_back(std::thread(&MultiMatcher<T, R>::spin, this, i));
+        }
     }
-   explicit MultiMatcher(MultiMatcher &) = delete;
-   explicit MultiMatcher(MultiMatcher &&) = default;
+   explicit MultiMatcher(const MultiMatcher &) = delete;
+   explicit MultiMatcher(MultiMatcher &&) = delete;
+   MultiMatcher&
+   operator=(const MultiMatcher&) = delete;
+   MultiMatcher&
+   operator=(MultiMatcher&&) = delete;
    
     ~MultiMatcher();
 
@@ -79,26 +82,43 @@ class MultiMatcher {
  private:
     const int n_thread;
     const int queue_size;
-    int remaining_matches;
-    R config;
+    size_t remaining_matches{0};
+    const R config;
     std::queue<std::tuple<int, PCLPointCloudPtr, PCLPointCloudPtr>> input;
     std::queue<std::tuple<int, Eigen::Affine3d, Mat6>> output;
     std::vector<std::thread> pool;
-    //std::vector<T, Eigen::aligned_allocator<T>> matchers; // not needed with C++17 
-                                                            // https://eigen.tuxfamily.org/dox/group__TopicStlContainers.html
-    std::vector<T> matchers;
-
+    T matcher0, matcher1, matcher2, matcher3, matcher4, matcher5, matcher6, matcher7;
     // Synchronization
     std::mutex ip_mutex, op_mutex, cnt_mutex;
     std::condition_variable ip_condition;
     std::condition_variable op_condition;
-    bool stop;
-
+    bool stop{false};
+    T& getMatcher(size_t threadid) {
+      switch (threadid) {
+         case 0:
+            return this->matcher0;
+         case 1:
+            return this->matcher1;
+         case 2:
+            return this->matcher2;
+         case 3:
+            return this->matcher3;
+         case 4:
+            return this->matcher4;
+         case 5:
+            return this->matcher5;
+         case 6:
+            return this->matcher6;
+         case 7:
+            return this->matcher7;
+         default:
+            throw std::runtime_error("Invalid thread id");
+      }
+    }
     /** Function run by each worker thread
      * @param threadid pair of clouds to match
      */
     void spin(int threadid);
-    void initPool(R params);
 };
 
 }  // namespace wave
